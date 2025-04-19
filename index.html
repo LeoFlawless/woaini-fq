@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>我有话想对你说</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #ffe6f0;
+      text-align: center;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 3em;
+      color: #ff3366;
+      margin-top: 80px;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      margin-top: 40px;
+      border: none;
+      border-radius: 10px;
+      background: #ff6699;
+      color: white;
+      cursor: pointer;
+    }
+    #reasons {
+      margin-top: 50px;
+      font-size: 1.5em;
+      color: #cc3366;
+      display: none;
+    }
+    #choice {
+      margin-top: 30px;
+      display: none;
+    }
+    #noBtn {
+      position: absolute;
+    }
+    /* 爱心飘落动画 */
+    .heart {
+      width: 20px;
+      height: 20px;
+      position: fixed;
+      top: -20px;
+      background-color: #ff6699;
+      transform: rotate(45deg);
+      animation: fall 5s linear infinite;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      width: 20px;
+      height: 20px;
+      background-color: #ff6699;
+      border-radius: 50%;
+      position: absolute;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    #love-section {
+      display: none;
+      margin-top: 100px;
+      color: #d6336c;
+    }
+    #love-heart {
+      font-size: 80px;
+      animation: beat 1s infinite;
+    }
+
+    @keyframes beat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.3);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 背景音乐 -->
+  <audio id="bgm" src="https://cdn.pixabay.com/download/audio/2023/03/06/audio_9e4cc1e4ba.mp3?filename=sweet-love-140184.mp3" loop></audio>
+
+  <h1>我有话想对你说… 😳</h1>
+  <button id="startBtn">点我一下～</button>
+
+  <div id="reasons"></div>
+
+  <div id="choice">
+    <p>你愿意继续爱更多的喜欢我吗？🥺</p>
+    <button onclick="yes()">愿意 ❤️</button>
+    <button id="noBtn" onmouseover="moveNo()">不愿意 😢</button>
+  </div>
+
+  <div id="love-section">
+    <div id="love-heart">❤️</div>
+    <h2>耶！我也喜欢你！！</h2>
+    <p>以后一起做很多很多开心的事吧 🎉</p>
+  </div>
+
+  <script>
+    const reasons = [
+      "你笑起来真的好甜 😍",
+      "和你在一起时间过得特别快 ✨",
+      "每天都想见到你 🥺",
+      "我是真的真的超级超级喜欢你 ❤️"
+    ];
+
+    const reasonBox = document.getElementById("reasons");
+    const choiceBox = document.getElementById("choice");
+    const startBtn = document.getElementById("startBtn");
+    const bgm = document.getElementById("bgm");
+
+    startBtn.onclick = async function () {
+      startBtn.style.display = "none";
+      bgm.play(); // 播放音乐
+      reasonBox.style.display = "block";
+      for (let i = 0; i < reasons.length; i++) {
+        reasonBox.innerHTML += `<p>${reasons[i]}</p>`;
+        await new Promise(resolve => setTimeout(resolve, 1500));
+      }
+      choiceBox.style.display = "block";
+    };
+
+    function yes() {
+      document.body.innerHTML = '';
+      document.body.style.background = '#fff0f5';
+      document.body.innerHTML = `
+        <div id="love-section">
+          <div id="love-heart">❤️</div>
+          <h2>耶！我也喜欢你！！</h2>
+          <p>以后一起做很多很多开心的事吧 🎉</p>
+        </div>
+      `;
+      for (let i = 0; i < 30; i++) createHeart();
+    }
+
+    function moveNo() {
+      const btn = document.getElementById("noBtn");
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 100);
+      btn.style.left = `${x}px`;
+      btn.style.top = `${y}px`;
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.animationDuration = `${2 + Math.random() * 3}s`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+
+    // 持续飘爱心
+    setInterval(createHeart, 500);
+  </script>
+
+</body>
+</html>
