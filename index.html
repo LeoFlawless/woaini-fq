@@ -104,7 +104,7 @@
   <div id="reasons"></div>
 
   <div id="choice">
-    <p>你愿意继续爱更多的喜欢我吗？🥺</p>
+    <p>你愿意继续更多的喜欢我吗？🥺</p>
     <button onclick="yes()">愿意 ❤️</button>
     <button id="noBtn" onmouseover="moveNo()">不愿意 😢</button>
   </div>
@@ -113,6 +113,11 @@
     <div id="love-heart">❤️</div>
     <h2>耶！我也喜欢你！！</h2>
     <p>以后一起做很多很多开心的事吧 🎉</p>
+    <p>我想每天都见到你 🥺</p>
+    <p>我想牵着你的手一起走路 🤝</p>
+    <p>我想抱着你，一直一直抱着你 🫂</p>
+    <p>我们一起看电影、吃火锅、打游戏、看星星 ✨</p>
+    <p>总之——就是想和你一直在一起 ❤️</p>
   </div>
 
   <script>
@@ -140,12 +145,11 @@
     };
 
     function yes() {
-  document.getElementById("reasons").style.display = "none";
-  document.getElementById("choice").style.display = "none";
-  document.getElementById("love-section").style.display = "block";
-
-  for (let i = 0; i < 30; i++) createHeart();
-}
+      document.getElementById("reasons").style.display = "none";
+      document.getElementById("choice").style.display = "none";
+      document.getElementById("love-section").style.display = "block";
+      for (let i = 0; i < 30; i++) createHeart();
+    }
 
     function moveNo() {
       const btn = document.getElementById("noBtn");
@@ -164,9 +168,12 @@
       setTimeout(() => heart.remove(), 5000);
     }
 
-    // 持续飘爱心
     setInterval(createHeart, 500);
   </script>
+
+</body>
+</html>
+
 
 </body>
 </html>
