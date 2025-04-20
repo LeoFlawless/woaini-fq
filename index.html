@@ -140,17 +140,12 @@
     };
 
     function yes() {
-      document.body.innerHTML = '';
-      document.body.style.background = '#fff0f5';
-      document.body.innerHTML = `
-        <div id="love-section">
-          <div id="love-heart">❤️</div>
-          <h2>耶！我也喜欢你！！</h2>
-          <p>以后一起做很多很多开心的事吧 🎉</p>
-        </div>
-      `;
-      for (let i = 0; i < 30; i++) createHeart();
-    }
+  document.getElementById("reasons").style.display = "none";
+  document.getElementById("choice").style.display = "none";
+  document.getElementById("love-section").style.display = "block";
+
+  for (let i = 0; i < 30; i++) createHeart();
+}
 
     function moveNo() {
       const btn = document.getElementById("noBtn");
